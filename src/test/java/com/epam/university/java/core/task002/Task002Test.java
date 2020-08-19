@@ -98,6 +98,13 @@ public class Task002Test {
                 instance.left("Hello, World", ","));
     }
 
+    @Test
+    public void leftWithNonExistSeparator() throws Exception {
+        assertEquals("Error in left with separator function",
+                "Hello, World",
+                instance.left("Hello, World", ":"));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void rightWithCharIsNull() throws Exception {
         instance.right(null, null);

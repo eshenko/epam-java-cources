@@ -5,8 +5,8 @@ public class Task001Impl implements Task001 {
     public double addition(String firstNumber, String secondNumber) {
         if (firstNumber == null
             || secondNumber == null
-            || firstNumber.trim().isEmpty()
-            || secondNumber.trim().isEmpty()) {
+            || firstNumber.isBlank()
+            || secondNumber.isBlank()) {
             throw new IllegalArgumentException();
         }
         return Double.parseDouble(firstNumber.trim()) + Double.parseDouble(secondNumber.trim());
@@ -16,8 +16,8 @@ public class Task001Impl implements Task001 {
     public double subtraction(String firstNumber, String secondNumber) {
         if (firstNumber == null
             || secondNumber == null
-            || firstNumber.trim().isEmpty()
-            || secondNumber.trim().isEmpty()) {
+            || firstNumber.isBlank()
+            || secondNumber.isBlank()) {
             throw new IllegalArgumentException();
         }
         return Double.parseDouble(firstNumber.trim()) - Double.parseDouble(secondNumber.trim());
@@ -27,8 +27,8 @@ public class Task001Impl implements Task001 {
     public double multiplication(String firstNumber, String secondNumber) {
         if (firstNumber == null
             || secondNumber == null
-            || firstNumber.trim().isEmpty()
-            || secondNumber.trim().isEmpty()) {
+            || firstNumber.isBlank()
+            || secondNumber.isBlank()) {
             throw new IllegalArgumentException();
         }
         return Double.parseDouble(firstNumber.trim()) * Double.parseDouble(secondNumber.trim());
@@ -38,8 +38,8 @@ public class Task001Impl implements Task001 {
     public double division(String firstNumber, String secondNumber) {
         if (firstNumber == null
             || secondNumber == null
-            || firstNumber.trim().isEmpty()
-            || secondNumber.trim().isEmpty()) {
+            || firstNumber.isBlank()
+            || secondNumber.isBlank()) {
             throw new IllegalArgumentException();
         }
         return Double.parseDouble(firstNumber.trim()) / Double.parseDouble(secondNumber.trim());

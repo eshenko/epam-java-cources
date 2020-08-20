@@ -52,7 +52,7 @@ public class Task003Impl implements Task003 {
                 result.add(s);
             }
         }
-        return result.toArray(new String[result.size()]);
+        return result.toArray(new String[0]);
     }
 
     @Override
@@ -66,7 +66,7 @@ public class Task003Impl implements Task003 {
                 result.remove(s);
             }
         }
-        return result.toArray(new String[result.size()]);
+        return result.toArray(new String[0]);
     }
 
     @Override
@@ -99,6 +99,6 @@ public class Task003Impl implements Task003 {
             Collections.addAll(result, operation.flatMap(value));
         }
 
-        return result.toArray(new String[result.size()]);
+        return result.toArray(new String[0]);
     }
 }

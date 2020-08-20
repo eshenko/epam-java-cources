@@ -62,7 +62,7 @@ public class Task002Test {
 
     @Test
     public void leftWithExceedAmount() throws Exception {
-        assertEquals("Error is left function", 
+        assertEquals("Error is left function",
                 "Hello, World",
                 instance.left("Hello, World", 50));
     }
@@ -108,13 +108,6 @@ public class Task002Test {
                 instance.left("Hello, World", ","));
     }
 
-    @Test
-    public void leftWithNonExistSeparator() throws Exception {
-        assertEquals("Error in left with separator function",
-                "Hello, World",
-                instance.left("Hello, World", ":"));
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void rightWithStringIsNull() throws Exception {
         instance.right(null, ",");
@@ -130,6 +123,13 @@ public class Task002Test {
         assertEquals("Error in right function",
                 "World",
                 instance.right("Hello, World", ", "));
+    }
+
+    @Test
+    public void rightWithSeparator2() throws Exception {
+        assertEquals("Error in right function",
+                "World",
+                instance.right("Hello,World", ","));
     }
 
     @Test

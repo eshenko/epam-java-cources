@@ -24,7 +24,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] join(String[] first, String[] second) {
-        if (first == null && second == null) {
+        if (first == null || second == null) {
             throw new IllegalArgumentException();
         }
         String[] result = Arrays.copyOf(first, first.length + second.length);
@@ -34,7 +34,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public int findMax(int[] source) {
-        if (source == null) {
+        if (source == null || source.length == 0) {
             throw new IllegalArgumentException();
         }
         Arrays.sort(source);
@@ -43,7 +43,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] filter(String[] source, FilteringCondition condition) {
-        if (source == null && condition == null) {
+        if (source == null || condition == null) {
             throw new IllegalArgumentException();
         }
         List<String> result = new ArrayList<>();
@@ -57,13 +57,13 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] removeElements(String[] source, String[] toRemote) {
-        if (source == null && toRemote == null) {
+        if (source == null || toRemote == null) {
             throw new IllegalArgumentException();
         }
         List<String> result = new ArrayList<>(Arrays.asList(source));
-        for (int i = 0; i < result.size(); i++) {
-            if (Arrays.asList(toRemote).contains(result.get(i))) {
-                result.remove(i);
+        for (String s : source) {
+            if (Arrays.asList(toRemote).contains(s)) {
+                result.remove(s);
             }
         }
         return result.toArray(new String[result.size()]);
@@ -71,7 +71,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] map(String[] source, MappingOperation operation) {
-        if (source == null && operation == null) {
+        if (source == null || operation == null) {
             throw new IllegalArgumentException();
         }
 
@@ -83,7 +83,7 @@ public class Task003Impl implements Task003 {
 
     @Override
     public String[] flatMap(String[] source, FlatMappingOperation operation) {
-        if (source == null && operation == null) {
+        if (source == null || operation == null) {
             throw new IllegalArgumentException();
         }
 

@@ -18,9 +18,7 @@ public class Task005Impl implements Task005 {
 
         for (int i = (int) (begin * Math.PI); i <= end; i++) {
             for (int j = begin; j < i; j++) {
-                double a = i;
-                double b = j;
-                tmp = Math.abs((a / b) - Math.PI);
+                tmp = Math.abs(((double) i / (double) j) - Math.PI);
                 if (tmp < min) {
                     min = tmp;
                     numerator = i;
@@ -33,8 +31,6 @@ public class Task005Impl implements Task005 {
         }
 
 
-        PiHolder result = new PiHolderImpl(numerator, denominator);
-
-        return result;
+        return new PiHolderImpl(numerator, denominator);
     }
 }

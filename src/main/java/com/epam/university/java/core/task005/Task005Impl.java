@@ -17,19 +17,15 @@ public class Task005Impl implements Task005 {
         double min = 1;
 
         for (int i = (int) (begin * Math.PI); i <= end; i++) {
-            for (int j = begin; j < i; j++) {
+            for (int j = i / 4; j <= i / 3; j++) {
                 tmp = Math.abs(((double) i / (double) j) - Math.PI);
                 if (tmp < min) {
                     min = tmp;
                     numerator = i;
                     denominator = j;
                 }
-                if (j > i / 3) {
-                    break;
-                }
             }
         }
-
 
         return new PiHolderImpl(numerator, denominator);
     }

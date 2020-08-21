@@ -26,7 +26,7 @@ public class Task005Impl implements Task005 {
                     numerator = i;
                     denominator = j;
                 }
-                if (j > i/3) {
+                if (j > i / 3) {
                     break;
                 }
             }

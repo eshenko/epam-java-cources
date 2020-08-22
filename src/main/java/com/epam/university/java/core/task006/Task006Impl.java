@@ -22,8 +22,6 @@ public class Task006Impl implements Task006 {
         avgU /= measurements.size();
         avgI /= measurements.size();
 
-        //R=(U*I)/(I*I)
-
         for (Measurement m : measurements) {
             devU += (m.getVoltage() - avgU) * (m.getAmperage() - avgI);
             devI += Math.pow(m.getAmperage() - avgI, 2);

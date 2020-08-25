@@ -154,6 +154,16 @@ public class Task003Test {
     }
 
     @Test
+    public void testFilterWithEmptyArgument() throws Exception {
+        final String[] source = {};
+        final String[] target = {};
+        assertArrayEquals("Error in filter operation",
+                target,
+                instance.filter(source, filteringCondition)
+        );
+    }
+
+    @Test
     public void testFilter() throws Exception {
         final String[] source = {
                 "One",
@@ -171,16 +181,6 @@ public class Task003Test {
         );
     }
 
-    @Test
-    public void testFilterWithEmptyArgument() throws Exception {
-        final String[] source = {};
-        final String[] target = {};
-        assertArrayEquals("Error in filter operation",
-                target,
-                instance.filter(source, filteringCondition)
-        );
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testMapWithoutFirstArguments() throws Exception {
         instance.map(null, mappingOperation);
@@ -190,6 +190,16 @@ public class Task003Test {
     public void testMapWithoutSecondArguments() throws Exception {
         final String[] source = {};
         instance.map(source, null);
+    }
+
+    @Test
+    public void testMapWithEmptyArgument() throws Exception {
+        final String[] source = {};
+        final String[] target = {};
+        assertArrayEquals("Error in map operation",
+                target,
+                instance.map(source, mappingOperation)
+        );
     }
 
     @Test
@@ -212,16 +222,6 @@ public class Task003Test {
         );
     }
 
-    @Test
-    public void testMapWithEmptyArgument() throws Exception {
-        final String[] source = {};
-        final String[] target = {};
-        assertArrayEquals("Error in map operation",
-                target,
-                instance.map(source, mappingOperation)
-        );
-    }
-
     @Test(expected = IllegalArgumentException.class)
     public void testFlatMapWithoutFirstArguments() throws Exception {
         instance.flatMap(null, flatMappingOperation);
@@ -231,6 +231,16 @@ public class Task003Test {
     public void testFlatMapWithoutSecondArguments() throws Exception {
         final String[] source = {};
         instance.flatMap(source, null);
+    }
+
+    @Test
+    public void testFlatMapWithEmptyArgument() throws Exception {
+        final String[] source = {};
+        final String[] target = {};
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
     }
 
     @Test
@@ -259,9 +269,52 @@ public class Task003Test {
     }
 
     @Test
-    public void testFlatMapWithEmptyArgument() throws Exception {
-        final String[] source = {};
-        final String[] target = {};
+    public void testFlatMap2() throws Exception {
+        final String[] source = {
+                "   150   , 2,     3, 4   , 5",
+                "1, 2, 6,      7, 7, 7, 8",
+                "10, 9"
+        };
+        final String[] target = {
+                "150",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+        };
+        assertArrayEquals("Error in flat map operation",
+                target,
+                instance.flatMap(source, flatMappingOperation)
+        );
+    }
+
+    @Test
+    public void testFlatMap3() throws Exception {
+        final String[] source = {
+                "   150   , 2,     3, 4   , 5",
+                "1, 2, 6,      7, 7, 7, 8",
+                "10, 9, 230    "
+        };
+        final String[] target = {
+                "230",
+                "150",
+                "10",
+                "9",
+                "8",
+                "7",
+                "6",
+                "5",
+                "4",
+                "3",
+                "2",
+                "1"
+        };
         assertArrayEquals("Error in flat map operation",
                 target,
                 instance.flatMap(source, flatMappingOperation)

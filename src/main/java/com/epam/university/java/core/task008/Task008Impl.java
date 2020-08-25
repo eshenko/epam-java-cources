@@ -1,6 +1,6 @@
 package com.epam.university.java.core.task008;
 
-import java.util.Stack;
+import java.util.*;
 
 public class Task008Impl implements Task008 {
     @Override
@@ -11,32 +11,20 @@ public class Task008Impl implements Task008 {
         if (sourceString.isEmpty()) {
             return true;
         }
-
-
-        Stack<Character> stack = new Stack<>();
+        List<Character> openBraces = new ArrayList<>(Arrays.asList('{', '(', '['));
+        List<Character> closeBraces = new ArrayList<>(Arrays.asList('}', ')', ']'));
+        LinkedList<Character> stack = new LinkedList<>();
         for (int i = 0; i < sourceString.length(); i++) {
-            if (sourceString.charAt(i) == '{'
-                || sourceString.charAt(i) == '('
-                || sourceString.charAt(i) == '[') {
-                stack.push(sourceString.charAt(i));
-            } else if (sourceString.charAt(i) == '}'
-                       || sourceString.charAt(i) == ')'
-                       || sourceString.charAt(i) == ']') {
-                if (stack.size() == 0) {
+            if (openBraces.contains(sourceString.charAt(i))) {
+                stack.addLast(sourceString.charAt(i));
+            } else if (closeBraces.contains(sourceString.charAt(i))) {
+                if (stack.size() == 0
+                    || (stack.getLast() == '{' && sourceString.charAt(i) != '}')
+                    || (stack.getLast() == '(' && sourceString.charAt(i) != ')')
+                    || (stack.getLast() == '[' && sourceString.charAt(i) != ']')) {
                     return false;
-                }
-                if (stack.pop() == '{') {
-                    if (sourceString.charAt(i) != '}') {
-                        return false;
-                    }
-                } else if (stack.pop() == '(') {
-                    if (sourceString.charAt(i) != ')') {
-                        return false;
-                    }
-                } else if (stack.pop() == '[') {
-                    if (sourceString.charAt(i) != ']') {
-                        return false;
-                    }
+                } else {
+                    stack.removeLast();
                 }
             }
         }

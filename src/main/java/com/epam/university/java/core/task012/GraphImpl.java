@@ -14,17 +14,26 @@ public class GraphImpl implements Graph {
 
     @Override
     public void createEdge(int from, int to) {
+        if (from >= vertexes || to >= vertexes) {
+            throw new IllegalArgumentException();
+        }
         edges[from][to] = true;
         edges[to][from] = true;
     }
 
     @Override
     public boolean edgeExists(int from, int to) {
+        if (from >= vertexes || to >= vertexes) {
+            throw new IllegalArgumentException();
+        }
         return edges[from][to];
     }
 
     @Override
     public void removeEdge(int from, int to) {
+        if (from >= vertexes || to >= vertexes) {
+            throw new IllegalArgumentException();
+        }
         edges[from][to] = false;
         edges[to][from] = false;
     }

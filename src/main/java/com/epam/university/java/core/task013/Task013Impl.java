@@ -7,6 +7,9 @@ import java.util.List;
 public class Task013Impl implements Task013 {
     @Override
     public Figure invokeActions(Figure figure, Collection<FigureAction> actions) {
+        if (figure == null || actions == null || actions.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         for (FigureAction figureAction : actions) {
             figureAction.run(figure);
         }
@@ -15,6 +18,9 @@ public class Task013Impl implements Task013 {
 
     @Override
     public boolean isConvexPolygon(Figure figure) {
+        if (figure == null) {
+            throw new IllegalArgumentException();
+        }
 
         List<Vertex> vertexList = new ArrayList<>(sortVertices(figure));
 

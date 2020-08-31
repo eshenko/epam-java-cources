@@ -131,9 +131,9 @@ public class Task012Test {
             g -> g.removeEdge(5, 4)
         ));
         assertFalse("There is no path between vertexes",
-            instance.pathExists(targetGraph, 1, 2));
+                instance.pathExists(targetGraph, 1, 2));
         assertTrue("There is path between vertexes",
-            instance.pathExists(targetGraph, 2, 4));
+                instance.pathExists(targetGraph, 2, 4));
     }
 
     @Test
@@ -149,11 +149,11 @@ public class Task012Test {
             g -> g.createEdge(5, 6)
         ));
         assertFalse("There is no path between vertexes",
-            instance.pathExists(targetGraph, 1, 6));
+                instance.pathExists(targetGraph, 1, 6));
         assertFalse("There is no path between vertexes",
-            instance.pathExists(targetGraph, 1, 5));
+                instance.pathExists(targetGraph, 1, 5));
         assertTrue("There is path between vertexes",
-            instance.pathExists(targetGraph, 2, 4));
+                instance.pathExists(targetGraph, 2, 4));
     }
 
     @Test

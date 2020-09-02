@@ -59,25 +59,19 @@ public class Task013Impl implements Task013 {
      */
     public ArrayList<Vertex> sortVertices(Figure figure) {
         ArrayList<Vertex> vertices = (ArrayList<Vertex>) figure.getVertexes();
-        for (int i = 0; i < vertices.size(); i++) {
+        for (int i = 1; i < vertices.size(); i++) {
             if (vertices.get(0).getX() > vertices.get(i).getX()) {
                 Vertex tmp = vertices.get(0);
                 vertices.set(0, vertices.get(i));
                 vertices.set(i, tmp);
             }
-        }
-        for (int i = 1; i < vertices.size(); i++) {
-            int j = i;
-            while (j > 1 && (getVector(vertices.get(0),
-                             vertices.get(j - 1),
-                             vertices.get(j)) < 0)) {
-                Vertex tmp = vertices.get(j);
-                vertices.set(j, vertices.get(j - 1));
-                vertices.set(j - 1, tmp);
-                j--;
+            while (i > 1 && getVector(vertices.get(0), vertices.get(i - 1), vertices.get(i)) < 0) {
+                Vertex tmp = vertices.get(i);
+                vertices.set(i, vertices.get(i - 1));
+                vertices.set(i - 1, tmp);
+                i--;
             }
         }
-
         return vertices;
     }
 }

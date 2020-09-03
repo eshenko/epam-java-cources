@@ -8,6 +8,9 @@ public class Task007Impl implements Task007 {
     @Override
     public Collection<Integer> multiplyPolynomial(Collection<Integer> first,
                                                   Collection<Integer> second) {
+        if (first == null || second == null) {
+            throw new IllegalArgumentException();
+        }
         List<Integer> firstList = new ArrayList<>(first);
         List<Integer> secondList = new ArrayList<>(second);
 

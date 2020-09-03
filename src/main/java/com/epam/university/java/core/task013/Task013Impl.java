@@ -46,18 +46,31 @@ public class Task013Impl implements Task013 {
      * @param c - third point
      * @return vector sign
      */
-    public int getVector(Vertex a, Vertex b, Vertex c) {
-        return (b.getX() - a.getX()) * (c.getY() - b.getY())
-                - (b.getY() - a.getY()) * (c.getX() - b.getX());
+    private int getVector(Vertex a, Vertex b, Vertex c) {
+        int baX = a.getX() - b.getX();
+        int baY = a.getY() - b.getY();
+        int bcX = c.getX() - b.getX();
+        int bcY = c.getY() - b.getY();
+        return (baX * bcY) - (baY * bcX);
+    }
+
+    /**
+     * Get distance between points.
+     * @param p1 first point
+     * @param p2 second point
+     * @return distance
+     */
+    private int getDistance(Vertex p1, Vertex p2) {
+        return (p1.getX() - p2.getX()) * (p1.getX() - p2.getX())
+                + (p1.getY() - p2.getY()) * (p1.getY() - p2.getY());
     }
 
     /**
      * Sort vertices.
-     *
      * @param figure - source figure
      * @return sorted collection
      */
-    public ArrayList<Vertex> sortVertices(Figure figure) {
+    private List<Vertex> sortVertices(Figure figure) {
         ArrayList<Vertex> vertices = (ArrayList<Vertex>) figure.getVertexes();
         for (int i = 1; i < vertices.size(); i++) {
             if (vertices.get(0).getX() > vertices.get(i).getX()) {
@@ -65,11 +78,23 @@ public class Task013Impl implements Task013 {
                 vertices.set(0, vertices.get(i));
                 vertices.set(i, tmp);
             }
-            while (i > 1 && getVector(vertices.get(0), vertices.get(i - 1), vertices.get(i)) < 0) {
-                Vertex tmp = vertices.get(i);
-                vertices.set(i, vertices.get(i - 1));
-                vertices.set(i - 1, tmp);
-                i--;
+            while (i > 1) {
+                int cross = getVector(vertices.get(0), vertices.get(i - 1), vertices.get(i));
+                if (cross < 0) {
+                    Vertex tmp = vertices.get(i);
+                    vertices.set(i, vertices.get(i - 1));
+                    vertices.set(i - 1, tmp);
+                    i--;
+                } else if (cross == 0
+                        && getDistance(vertices.get(0), vertices.get(i - 1))
+                        < getDistance(vertices.get(0), vertices.get(i))
+                        && i > vertices.size() / 2) {
+                    Vertex tmp = vertices.get(i);
+                    vertices.set(i, vertices.get(i - 1));
+                    vertices.set(i - 1, tmp);
+                } else {
+                    break;
+                }
             }
         }
         return vertices;

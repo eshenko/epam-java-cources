@@ -1,5 +1,7 @@
 package com.epam.university.java.core.task013;
 
+import java.util.Objects;
+
 public class VertexImpl implements Vertex {
 
     private int x;

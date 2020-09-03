@@ -46,7 +46,7 @@ public interface Task003 {
      * Remove elements from source array.
      *
      * @param source source array
-     * @param toRemove elements to remove
+     * @param toRemote elements to remove
      * @return new array without removed elements
      * @throws IllegalArgumentException if parameters not provided
      */

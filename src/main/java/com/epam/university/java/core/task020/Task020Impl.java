@@ -7,6 +7,9 @@ import java.util.stream.Collectors;
 public class Task020Impl implements Task020 {
     @Override
     public int calculate(Collection<String> stones) {
+        if (stones == null || stones.isEmpty()) {
+            throw new IllegalArgumentException();
+        }
         return stones.stream()
                 .map(s -> Arrays.stream(s.split("")).collect(Collectors.toSet()))
                 .reduce((s1, s2) -> {

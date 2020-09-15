@@ -1,8 +1,8 @@
 package com.epam.university.java.core.task027;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Task027Impl implements Task027 {
     @Override
@@ -10,7 +10,7 @@ public class Task027Impl implements Task027 {
         if (sourceString == null) {
             throw new IllegalArgumentException();
         }
-        Set<Integer> result = new HashSet<>();
+        Set<Integer> result = new TreeSet<>();
         for (int i = 1; i <= sourceString.length() / 2; i++) {
             String currentPart = sourceString.substring(0, i);
             if (currentPart.startsWith("0")) {
@@ -19,8 +19,12 @@ public class Task027Impl implements Task027 {
             int current = i;
             while (current < sourceString.length()) {
                 int next = Integer.parseInt(currentPart) + 1;
+                int nextDigits = String.valueOf(next).length();
+                if (current + nextDigits > sourceString.length()) {
+                    break;
+                }
                 String nextPart = sourceString.substring(current,
-                        current + String.valueOf(next).length());
+                        current + nextDigits);
                 if (next != Integer.parseInt(nextPart)) {
                     break;
                 }

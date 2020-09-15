@@ -1,6 +1,7 @@
 package com.epam.university.java.core.task017;
 
 import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class Task017Impl implements Task017 {
     @Override
@@ -26,7 +27,7 @@ public class Task017Impl implements Task017 {
                 throw new IllegalArgumentException();
             }
         }
-        return String.format("%.1f, %<.2f, %<+.2f, %<#a", args[0]);
+        return String.format(Locale.US, "%.1f, %<.2f, %<+.2f, %<a", args[0]);
     }
 
     @Override

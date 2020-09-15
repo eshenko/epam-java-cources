@@ -39,14 +39,19 @@ public class ServerImpl implements Server {
 
     @Override
     public void start() {
+        try {
+            server = new ServerSocket(10000);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         new Thread(() -> {
-            try {
-                server = new ServerSocket(10000);
-                while (!server.isClosed()) {
+            while (!server.isClosed()) {
+                try {
                     accepts.add(server.accept());
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }).start();
     }
@@ -54,7 +59,9 @@ public class ServerImpl implements Server {
     @Override
     public void stop() {
         try {
-            in.close();
+            if (in != null) {
+                in.close();
+            }
             server.close();
         } catch (IOException e) {
             e.printStackTrace();

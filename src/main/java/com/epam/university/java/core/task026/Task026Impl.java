@@ -7,6 +7,7 @@ public class Task026Impl implements Task026 {
             throw new IllegalArgumentException();
         }
         StringBuilder result = new StringBuilder();
+        shift = shift % 26;
         for (char c : sourceString.toCharArray()) {
             if (c >= 'a' && c <= 'z') {
                 if (c + shift > 'z') {
@@ -33,6 +34,7 @@ public class Task026Impl implements Task026 {
             throw new IllegalArgumentException();
         }
         StringBuilder result = new StringBuilder();
+        shift = shift % 26;
         for (char c : encryptedString.toCharArray()) {
             if (c >= 'a' && c <= 'z') {
                 if (c - shift < 'a') {

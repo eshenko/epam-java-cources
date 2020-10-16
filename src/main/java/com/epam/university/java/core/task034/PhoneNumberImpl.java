@@ -1,5 +1,6 @@
 package com.epam.university.java.core.task034;
 
+import com.fasterxml.jackson.annotation.JsonValue;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlValue;
@@ -7,7 +8,14 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class PhoneNumberImpl implements PhoneNumber {
     @XmlValue
+    @JsonValue
     private String phoneNumber;
+
+    public PhoneNumberImpl() {}
+
+    public PhoneNumberImpl(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     @Override
     public String getPhoneNumber() {

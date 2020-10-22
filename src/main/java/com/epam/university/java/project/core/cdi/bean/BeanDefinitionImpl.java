@@ -5,6 +5,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @XmlRootElement(name = "bean")
@@ -23,51 +24,51 @@ public class BeanDefinitionImpl implements BeanDefinition {
 
     @Override
     public String getId() {
-        return null;
+        return id;
     }
 
     @Override
     public void setId(String id) {
-
+        this.id = id;
     }
 
     @Override
     public String getClassName() {
-        return null;
+        return className;
     }
 
     @Override
     public void setClassName(String className) {
-
+        this.className = className;
     }
 
     @Override
     public Collection<BeanPropertyDefinition> getProperties() {
-        return null;
+        return properties;
     }
 
     @Override
     public void setProperties(Collection<BeanPropertyDefinition> properties) {
-
+        this.properties = properties;
     }
 
     @Override
     public String getPostConstruct() {
-        return null;
+        return postConstruct;
     }
 
     @Override
     public void setPostConstruct(String methodName) {
-
+        this.postConstruct = methodName;
     }
 
     @Override
     public String getScope() {
-        return null;
+        return scope;
     }
 
     @Override
     public void setScope(String scope) {
-
+        this.scope = scope;
     }
 }

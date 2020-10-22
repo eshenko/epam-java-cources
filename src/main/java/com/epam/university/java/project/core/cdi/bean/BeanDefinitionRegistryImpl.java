@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
-    //private final Map<String, BeanDefinition> registry = new HashMap<>();
     private final Collection<BeanDefinition> registry = new ArrayList<>();
 
     @Override
@@ -14,12 +13,11 @@ public class BeanDefinitionRegistryImpl implements BeanDefinitionRegistry {
 
     @Override
     public BeanDefinition getBeanDefinition(String beanId) {
-        BeanDefinition result = null;
         for (BeanDefinition bean : registry) {
             if (bean.getId().equals(beanId)) {
-                result = bean;
+                return bean;
             }
         }
-        return result;
+        return null;
     }
 }

@@ -13,26 +13,19 @@ public class BeanFactoryImpl implements BeanFactory {
 
     @Override
     public <T> T getBean(Class<T> beanClass) {
-        String className = beanClass.getSimpleName();
-        return (T) getBean(className);
-        //return (T) getBean(className.substring(0, 1)
-        //        .toLowerCase() + className.substring(1));
-/*        if (beanClass.isInterface()) {
-            Set<Class<? extends T>> realizations = new Reflections("com.epam.university.java.project")
-                    .getSubTypesOf(beanClass);
-            for (Class<? extends T> realization : realizations) {
-                if (registry.getBeanDefinition(realization.getName()) != null) {
-                    result = (T) registry.getBeanDefinition(realization.getName());
-                }
-
-            }
-        }*/
+        return (T) getBean(beanClass.getSimpleName());
     }
 
     @Override
     public Object getBean(String beanName) {
-        Object bean;
+        if (beanName.endsWith("Interface")) {
+            beanName = beanName.substring(0, beanName.length() - "Interface".length());
+        }
+        if (beanName.startsWith("Default")) {
+            beanName = beanName.substring("Default".length());
+        }
         String beanId = beanName.substring(0, 1).toLowerCase() + beanName.substring(1);
+        Object bean;
         BeanDefinition definition = registry.getBeanDefinition(beanId);
         try {
             bean = Objects.requireNonNull(Class.forName(definition.getClassName()))
@@ -42,20 +35,34 @@ public class BeanFactoryImpl implements BeanFactory {
                 for (BeanPropertyDefinition property : properties) {
                     Field field = bean.getClass().getDeclaredField(property.getName());
                     field.setAccessible(true);
+                    if (property.getRef() == null
+                            && property.getValue() == null
+                            && property.getData() == null) {
+                        throw new RuntimeException();
+                    }
                     if (property.getRef() != null) {
                         field.set(bean, getBean(property.getRef()));
                     }
+                    if (property.getValue() != null) {
+                        if ((int.class).equals(field.getType())) {
+                            field.set(bean, Integer.parseInt(property.getValue()));
+                        } else {
+                            field.set(bean, property.getValue());
+                        }
+                    }
+/*                    if (property.getData() != null) {
+                        field.set(bean, getBean(property.getData()));
+                    }*/
                 }
             }
             return bean;
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
     }
 
     @Override
     public <T> T getBean(String beanName, Class<T> beanClass) {
-        return null;
+        return (T) getBean(beanClass.getSimpleName());
     }
 }

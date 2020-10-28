@@ -37,7 +37,7 @@ public class BookDaoXmlImpl implements BookDao {
 
     @Override
     public Book save(Book book) {
-        book.setId(bookId++);
+        book.setId(++bookId);
         books.add(book);
         return book;
     }

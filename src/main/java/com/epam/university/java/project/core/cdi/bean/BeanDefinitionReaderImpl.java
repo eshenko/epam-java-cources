@@ -33,6 +33,10 @@ public class BeanDefinitionReaderImpl implements BeanDefinitionReader {
 
     @Override
     public int loadBeanDefinitions(Collection<Resource> resources) {
-        return 0;
+        int result = 0;
+        for (Resource resource : resources) {
+            result += loadBeanDefinitions(resource);
+        }
+        return result;
     }
 }

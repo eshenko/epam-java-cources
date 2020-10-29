@@ -14,9 +14,5 @@ public class Beans {
 
     public Collection<BeanDefinition> getBeans() {
         return beans;
-    };
-
-    public void setBeans(Collection<BeanDefinition> collection) {
-        this.beans = collection;
     }
 }

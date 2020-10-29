@@ -75,7 +75,8 @@ public class BeanFactoryImpl implements BeanFactory {
 
                         } else if (data instanceof MapDefinition) {
                             Map<Object, Object> entries = new HashMap<>();
-                            for (MapEntryDefinition dataEntry : ((MapDefinition) data).getValues()) {
+                            for (MapEntryDefinition dataEntry
+                                    : ((MapDefinition) data).getValues()) {
                                 if (dataEntry.getValue() != null && dataEntry.getRef() != null) {
                                     throw new RuntimeException();
                                 } else if (dataEntry.getValue() != null) {

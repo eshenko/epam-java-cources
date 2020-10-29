@@ -12,7 +12,8 @@ public class StateMachineManagerImpl implements StateMachineManager {
     }
 
     @Override
-    public <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity, StateMachineDefinition<S, E> definition) {
+    public <S, E> StatefulEntity<S, E> initStateMachine(StatefulEntity<S, E> entity,
+                                                        StateMachineDefinition<S, E> definition) {
         return null;
     }
 

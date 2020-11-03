@@ -28,7 +28,8 @@ public class StateMachineManagerImpl implements StateMachineManager {
                     StateMachineStateImpl.class
             );
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            return (StateMachineDefinition<BookStatus, BookEvent>) unmarshaller.unmarshal(resource.getFile());
+            return (StateMachineDefinition<BookStatus, BookEvent>)
+                    unmarshaller.unmarshal(resource.getFile());
         } catch (JAXBException e) {
             throw new RuntimeException();
         }

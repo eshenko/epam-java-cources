@@ -1,6 +1,7 @@
 package com.epam.university.java.project.domain;
 
 import com.epam.university.java.project.core.state.machine.domain.StateMachineDefinition;
+import com.epam.university.java.project.core.state.machine.domain.StatefulEntity;
 
 import java.time.LocalDate;
 import java.util.Collection;

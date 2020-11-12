@@ -43,12 +43,8 @@ public class Task021Impl implements Task021 {
         BigDecimal resX = BigDecimal.valueOf(numerator1 / denominator);
         BigDecimal resY = BigDecimal.valueOf(numerator2 / denominator);
 
-        double resultX = resX.setScale(16, RoundingMode.DOWN).doubleValue();
+        double resultX = resX.setScale(15, RoundingMode.DOWN).doubleValue();
         double resultY = resY.setScale(15, RoundingMode.DOWN).doubleValue();
-
-        if (resY.scale() == 16 && resY.signum() < 0) {
-            resultY = -0.42264973081037427;
-        }
 
         return new PointFactoryImpl().newInstance(resultX, resultY);
     }

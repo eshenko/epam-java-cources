@@ -12,6 +12,9 @@ public class ClientImpl implements Client {
 
     @Override
     public void sendMessage(String message) {
+        if (message == null) {
+            throw new IllegalArgumentException();
+        }
         try {
             out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
             out.write(message + System.lineSeparator());
@@ -24,7 +27,7 @@ public class ClientImpl implements Client {
     @Override
     public void start() {
         try {
-            client = new Socket(InetAddress.getLocalHost(), 10000);
+            client = new Socket(InetAddress.getLocalHost(), 8080);
         } catch (IOException e) {
             e.printStackTrace();
         }

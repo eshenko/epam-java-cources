@@ -29,7 +29,6 @@ public class ServerImpl implements Server {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         if (messages.isEmpty()) {
             return "";
         } else {
@@ -40,7 +39,7 @@ public class ServerImpl implements Server {
     @Override
     public void start() {
         try {
-            server = new ServerSocket(10000);
+            server = new ServerSocket(8080);
         } catch (IOException e) {
             e.printStackTrace();
         }

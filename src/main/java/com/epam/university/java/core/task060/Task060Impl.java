@@ -9,7 +9,7 @@ public class Task060Impl implements Task060 {
     @Override
     public void set(Cache cache, int key, String value) {
         if (cache == null) {
-            throw new RuntimeException("Cache not found");
+            throw new IllegalArgumentException();
         } else {
             cache.setNode(key, value);
         }
@@ -18,7 +18,7 @@ public class Task060Impl implements Task060 {
     @Override
     public String get(Cache cache, int key) {
         if (cache == null) {
-            throw new RuntimeException("Cache not found");
+            throw new IllegalArgumentException();
         } else {
             return cache.getNode(key);
         }

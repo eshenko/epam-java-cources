@@ -9,11 +9,12 @@ import java.net.Socket;
 public class ClientImpl implements Client {
     private Socket client;
     private BufferedWriter out;
+    private boolean check = false;
 
     @Override
     public void sendMessage(String message) {
         if (message == null) {
-            throw new IllegalArgumentException();
+            check = true;
         }
         try {
             out = new BufferedWriter(new OutputStreamWriter(client.getOutputStream()));
@@ -40,6 +41,9 @@ public class ClientImpl implements Client {
                 out.close();
             }
             client.close();
+            if (check) {
+                throw new IllegalArgumentException();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
